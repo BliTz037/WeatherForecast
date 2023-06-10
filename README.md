@@ -1,6 +1,7 @@
 # WeatherForecast
 Weather forecast website made with react
-*Project to learn to use React and Tailwind
+
+*Project to learn to use React and Tailwind*
 
 ## Objectifs
 Make a web app for users to see the current weather and the weather forecast for the next 7 days.
