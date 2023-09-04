@@ -2,6 +2,7 @@
 Weather forecast website made with react
 
 *Project to learn to use React and Tailwind*
+[Link](https://www.codementor.io/projects/web/weather-forecast-website-atx32lz7zb)
 
 ## Objectifs
 Make a web app for users to see the current weather and the weather forecast for the next 7 days.
