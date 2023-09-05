@@ -1,6 +1,6 @@
 const WeatherNow = () => {
     return (
-        <div className="weather-now">
+        <div className="weather-now flex flex-col items-center justify-center">
             <h3 className="text-2xl font-bold">London</h3>
             <p>Date & Hours</p>
             <p className="font-bold text-3xl">42 C°</p>

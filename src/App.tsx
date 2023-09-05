@@ -13,15 +13,15 @@ function App() {
       <div className="container mx-auto my-8 bg-slate-50 rounded-lg drop-shadow">
         <CityWeatherForm />
 
-        <div className="weather-dashboard grid gap-4 grid-cols-3 grid-rows-3">
+        <div className="weather-dashboard flex flex-wrap space-x-10 space-y-4">
           <TemperatureChart />
           <WeatherNow />
-        </div>
-        <div className="weather-week flex flex-row gap-2">
-          <WeatherDay day="Today" temperature={42} humidity={45} weather="Cloudy" />
-          <WeatherDay day="Tomorrow" temperature={42} humidity={45} weather="Cloudy" />
-          <WeatherDay day="Nov 25" temperature={42} humidity={45} weather="Cloudy" />
-          <WeatherDay day="Nov 26" temperature={42} humidity={45} weather="Cloudy" />
+          <div className="weather-week p-1 flex flex-row gap-2">
+            <WeatherDay day="Today" temperature={42} humidity={45} weather="Cloudy" />
+            <WeatherDay day="Tomorrow" temperature={42} humidity={45} weather="Cloudy" />
+            <WeatherDay day="Nov 25" temperature={42} humidity={45} weather="Cloudy" />
+            <WeatherDay day="Nov 26" temperature={42} humidity={45} weather="Cloudy" />
+          </div>
         </div>
       </div>
     </div>
