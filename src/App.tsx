@@ -3,7 +3,6 @@ import TemperatureChart from "./components/TemperatureChart"
 import WeatherDay from "./components/WeatherDay"
 import WeatherNow from "./components/WeatherNow"
 
-
 function App() {
 
   return (
@@ -14,13 +13,13 @@ function App() {
         <CityWeatherForm />
 
         <div className="weather-dashboard flex flex-wrap space-x-10 space-y-4">
-          <TemperatureChart />
           <WeatherNow />
-          <div className="weather-week p-1 flex flex-row gap-2">
-            <WeatherDay day="Today" temperature={42} humidity={45} weather="Cloudy" />
-            <WeatherDay day="Tomorrow" temperature={42} humidity={45} weather="Cloudy" />
-            <WeatherDay day="Nov 25" temperature={42} humidity={45} weather="Cloudy" />
-            <WeatherDay day="Nov 26" temperature={42} humidity={45} weather="Cloudy" />
+          <TemperatureChart />
+          <div className="weather-week pb-2 pr-3 flex flex-row gap-2">
+            <WeatherDay day="Today" temperature={30} humidity={41} weather="Sunny" />
+            <WeatherDay day="Tomorrow" temperature={26} humidity={50} weather="Clouds" />
+            <WeatherDay day="Nov 25" temperature={25} humidity={80} weather="Rain" />
+            <WeatherDay day="Nov 26" temperature={28} humidity={37} weather="z" />
           </div>
         </div>
       </div>
