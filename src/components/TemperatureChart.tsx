@@ -23,7 +23,6 @@ ChartJS.register(
 );
 
 export const options = {
-    responsive: false,
     plugins: {
         title: {
             display: false,
@@ -47,7 +46,9 @@ export const options = {
         point:{
             radius: 2
         },
-    }
+    },
+    responsive: true,
+    maintainAspectRatio: true,
 };
 
 const data = {
