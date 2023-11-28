@@ -7,69 +7,55 @@ import {
     Title,
     Tooltip,
     Filler,
-    Legend,
 } from 'chart.js';
-import { Line } from 'react-chartjs-2';
+import { Line } from "react-chartjs-2";
 
 ChartJS.register(
     CategoryScale,
     LinearScale,
     PointElement,
     LineElement,
-    Title,
     Tooltip,
     Filler,
-    Legend
 );
 
-export const options = {
+const labels = ['Now', '1h', '2h', '3h', '4h', '5h', '6h'];
+
+const options = {
     plugins: {
-        title: {
-            display: false,
-        },
-        legend: {
-            display: false
-        },
-        tooltips: {
-            enabled: false
-        }
+        title: { display: false },
+        legend: { display: false },
+        tooltips: { enabled: false }
     },
     scales: {
-        x: {
-            display: false
-        },
-        y: {
-            display: false
-        }
+        x: { display: false },
+        y: { display: false }
     },
     elements: {
-        point:{
-            radius: 2
-        },
+        point: { radius: 8 }
     },
     responsive: true,
     maintainAspectRatio: true,
 };
 
 const data = {
-    labels: ['Now', '18', '19', '20', '21', '22', '23', '00', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+    labels,
     datasets: [
         {
             fill: true,
             label: 'Temperature',
-            data: [32, 32, 31, 29, 27, 25, 24, 23, 22, 22, 21, 20, 20, 19, 19, 19, 21, 24, 27, 29, 31],
-            pointHoverRadius: 5,
-            borderColor: 'rgb(53, 162, 235)',
+            data: [13, 15, 20, 25, 30, 35, 40],
+            borderColor: 'rgba (31, 58, 138, 1)',
             backgroundColor: 'rgba(53, 162, 235, 0.5)',
-        },
+        }
     ],
 };
 
 const TemperatureChart = () => {
     return (
-        <div className="temperature-chart">
+        <div className="temperature-chart container bg-slate-50 rounded-lg drop-shadow">
             <p className="text font-semibold">Temperature</p>
-            <Line options={options} data={data} />
+            <Line data={data} options={options} />
         </div>
     )
 }

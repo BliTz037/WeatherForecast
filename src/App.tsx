@@ -16,7 +16,7 @@ function App() {
           <WeatherNow />
           <div className="flex-grow">
             <TemperatureChart />
-            <div className="weather-week pb-2 pr-3 flex flex-row gap-2">
+            <div className="weather-week pb-2 pr-3 py-3 flex flex-row gap-2">
               <WeatherDay day="Today" temperature={30} humidity={41} weather="Sunny" />
               <WeatherDay day="Tomorrow" temperature={26} humidity={50} weather="Clouds" />
               <WeatherDay day="Nov 25" temperature={25} humidity={80} weather="Rain" />
