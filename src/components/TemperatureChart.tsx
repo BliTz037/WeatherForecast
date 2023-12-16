@@ -4,7 +4,6 @@ import {
     LinearScale,
     PointElement,
     LineElement,
-    Title,
     Tooltip,
     Filler,
 } from 'chart.js';
