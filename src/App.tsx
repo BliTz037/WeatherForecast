@@ -5,19 +5,19 @@ import WeatherDay from "./components/WeatherDay";
 import WeatherNow from "./components/WeatherNow";
 
 function App() {
-  const [city, setCity] = useState("Paris");
+  const [city, setCity] = useState("London");
+  const [weatherData, setWeatherData] = useState({});
 
   const handleCityChange = (newCity: string) => {
-    console.log("Called handleCityChange");
     setCity(newCity);
+    console.log(newCity);
   };
 
-  const fetchWeather = async () => {
+  const fetchWeather = async (cityName: string) => {
     try {
-      const geoData = await fetchCityLocation();
-      console.log(geoData);
-
+      const geoData = await fetchCityLocation(cityName);
       const weatherData = await fetchWeatherData(geoData.lat, geoData.lon);
+
       console.log(weatherData);
     } catch (error) {
       console.error("Error fetching weather data:", error);
@@ -29,7 +29,6 @@ function App() {
     const API_URL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${import.meta.env.VITE_OPENWEATHER_KEY_API}`;
     try {
       const response = await fetch(API_URL, { method: "GET" });
-      console.log(response);
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
@@ -40,8 +39,8 @@ function App() {
     }
   };
 
-  const fetchCityLocation = async () => {
-    const API_URL = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${import.meta.env.VITE_OPENWEATHER_KEY_API}`;
+  const fetchCityLocation = async (cityName: string) => {
+    const API_URL = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=${import.meta.env.VITE_OPENWEATHER_KEY_API}`;
     try {
       const response = await fetch(API_URL, { method: "GET" });
       if (!response.ok) {
@@ -55,7 +54,7 @@ function App() {
   };
 
   useEffect(() => {
-    fetchWeather();
+    fetchWeather(city);
   }, [city]);
 
   return (

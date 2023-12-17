@@ -2,12 +2,11 @@ import React, { useState } from "react";
 
 const CityWeatherForm = ({ onCityChange }: any) => {
 
-    const [city, setCity]: React.ComponentState = useState("Paris");
+    const [city, setCity]: React.ComponentState = useState("");
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        console.log(city + " submitted");
-        onCityChange(e.target.value);
+        onCityChange(city);
     }
 
     return (
@@ -20,6 +19,7 @@ const CityWeatherForm = ({ onCityChange }: any) => {
                     value={city}
                     className="form-input bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:bg-blue-200"
                     id="inline-city-name"
+                    placeholder="London"
                     onChange={(e) => setCity(e.target.value)}
                 />
             </div>
