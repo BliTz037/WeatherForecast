@@ -10,7 +10,6 @@ function App() {
 
   const handleCityChange = (newCity: string) => {
     setCity(newCity);
-    console.log(newCity);
   };
 
   const fetchWeather = async (cityName: string) => {
@@ -82,7 +81,7 @@ function App() {
         <div className="weather-dashboard flex flex-wrap space-x-10 space-y-4 pb-3">
           <WeatherNow data={weatherData} />
           <div className="flex-grow">
-            <TemperatureChart />
+            <TemperatureChart data={weatherData} />
             <div className="weather-week pb-2 pr-3 py-3 flex flex-row gap-2">
               <WeatherDay day="Today" temperature={30} humidity={41} weather="Sunny" />
               <WeatherDay day="Tomorrow" temperature={26} humidity={50} weather="Clouds" />
