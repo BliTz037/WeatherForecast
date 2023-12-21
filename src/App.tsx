@@ -4,9 +4,17 @@ import TemperatureChart from "./components/TemperatureChart";
 import WeatherDay from "./components/WeatherDay";
 import WeatherNow from "./components/WeatherNow";
 
+interface WeatherDays {
+  day: string;
+  temperature: number;
+  humidity: number;
+  weather: string;
+}
+
 function App() {
   const [city, setCity] = useState("London");
   const [weatherData, setWeatherData] = useState({ now: {}, futur: {} });
+  const [weatherDays, setWeatherDays] = useState<WeatherDays[]>([]);
 
   const handleCityChange = (newCity: string) => {
     setCity(newCity);
@@ -67,32 +75,65 @@ function App() {
     }
   };
 
+  const getWeatherDays = (data: any) => {
+    const weatherDays: WeatherDays[] = [];
+    const middayValues: any[] = data?.futur?.list?.filter((item: any) => item.dt_txt.includes("12:00:00"));
+
+    weatherDays.push({
+      day: "Now",
+      temperature: Math.round(data?.now?.main?.temp),
+      humidity: data?.now?.main?.humidity,
+      weather: data?.now?.weather?.[0]?.main,
+    });
+
+    if (!middayValues)
+      return;
+    const day = new Date(middayValues[0].dt_txt).toDateString();
+    if (day == new Date().toDateString()) {
+      middayValues.shift();
+    }
+    middayValues.forEach((item: any) => {
+      weatherDays.push({
+        day: new Date(item.dt_txt).toDateString(),
+        temperature: Math.round(item.main.temp),
+        humidity: item.main.humidity,
+        weather: item.weather[0].main,
+      });
+    });
+    setWeatherDays(weatherDays);
+  };
+
   useEffect(() => {
-    fetchWeather(city);
+      fetchWeather(city);
   }, [city]);
 
-  return (
-    <div className="App">
-      <h1 className="text-4xl font-bold">Weather Forecast</h1>
+  useEffect(() => {
+      getWeatherDays(weatherData);
+  }, [weatherData]);
 
-      <div className="container mx-auto my-5 px-4 py-5 bg-slate-50 rounded-lg drop-shadow">
-        <CityWeatherForm onCityChange={handleCityChange} />
+    return (
+      <div className="App">
+        <h1 className="text-4xl font-bold">Weather Forecast</h1>
 
-        <div className="weather-dashboard flex flex-wrap space-x-10 space-y-4 pb-3">
-          <WeatherNow data={weatherData} />
-          <div className="flex-grow">
-            <TemperatureChart data={weatherData} />
-            <div className="weather-week pb-2 pr-3 py-3 flex flex-row gap-2">
-              <WeatherDay day="Today" temperature={30} humidity={41} weather="Sunny" />
-              <WeatherDay day="Tomorrow" temperature={26} humidity={50} weather="Clouds" />
-              <WeatherDay day="Nov 25" temperature={25} humidity={80} weather="Rain" />
-              <WeatherDay day="Nov 26" temperature={28} humidity={37} weather="z" />
+        <div className="container mx-auto my-5 px-4 py-5 bg-slate-50 rounded-lg drop-shadow">
+          <CityWeatherForm onCityChange={handleCityChange} />
+
+          <div className="weather-dashboard flex flex-wrap space-x-10 space-y-4 pb-3">
+            <WeatherNow data={weatherData} />
+            <div className="flex-grow">
+              <TemperatureChart data={weatherData} />
+              <div className="weather-week pb-2 pr-3 py-3 flex flex-row gap-2">
+                {
+                  weatherDays.map((item, index) => (
+                    <WeatherDay key={index} day={item.day} temperature={item.temperature} humidity={item.humidity} weather={item.weather} />
+                  ))
+                }
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
 
-export default App;
+  export default App;

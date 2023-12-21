@@ -1,10 +1,14 @@
-import { WiNightAltCloudy, WiRain, WiCloud, WiDaySunny } from "react-icons/wi";
+import { WiNightAltCloudy, WiRain, WiCloud, WiDaySunny, WiSnow, WiThunderstorm, WiTornado } from "react-icons/wi";
 
 
 const weatherIconDict: { [key: string]: any } = {
     "Clouds": <WiCloud className="text-4xl" />,
     "Sunny": <WiDaySunny className="text-4xl" />,
     "Rain": <WiRain className="text-4xl" />,
+    "Clear": <WiDaySunny className="text-4xl" />,
+    "Snow": <WiSnow className="text-4xl" />,
+    "Thunderstorm": <WiThunderstorm className="text-4xl" />,
+    "Tornado": <WiTornado className="text-4xl" />,
 };
 
 const WeatherDay = (props:
